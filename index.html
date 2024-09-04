@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bejelentkezés</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .login-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-container">
+        <h2>Bejelentkezés</h2>
+        <form id="loginForm">
+            <label for="username">Felhasználónév:</label><br>
+            <input type="text" id="username" name="username" placeholder="Felhasználónév" required><br><br>
+            <label for="password">Jelszó:</label><br>
+            <input type="password" id="password" name="password" placeholder="Jelszó" required><br><br>
+            <button type="submit">Bejelentkezés</button>
+        </form>
+        <p id="errorMessage" style="color: red; display: none;">Hibás felhasználónév vagy jelszó!</p>
+    </div>
+
+    <script>
+        // Hardcoded user credentials and their corresponding pages
+        const users = {
+            "tanar1": { password: "password123", page: "tanar1.html" },
+            "diak1": { password: "mypassword", page: "diak1.html" }
+        };
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            // Get input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Check if the username and password match
+            if (users[username] && users[username].password === password) {
+                // Login successful, redirect to the user's specific page
+                window.location.href = users[username].page;
+            } else {
+                // Show error message
+                document.getElementById('errorMessage').style.display = "block";
+            }
+        });
+    </script>
+
+</body>
+</html>
