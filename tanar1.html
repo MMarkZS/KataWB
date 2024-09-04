@@ -4,9 +4,186 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tanárok Oldala</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            justify-content: center;
+        }
+        .tabs div {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border-radius: 5px;
+            background-color: #555;
+        }
+        .tabs div.active {
+            background-color: #007bff;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background-color: white;
+            margin: 10px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        .table-container {
+            overflow-x: auto;
+        }
+    </style>
 </head>
 <body>
-    <h1>Üdvözöljük, tanár1!</h1>
-    <p>Ez a tanárok dedikált oldala.</p>
+
+    <div class="header">
+        <h1>Üdvözöljük, Tanár1!</h1>
+        <p>Ez a tanárok dedikált oldala.</p>
+    </div>
+
+    <div class="tabs">
+        <div id="tab1" class="active">Diákok Lista</div>
+        <div id="tab2">Órarend</div>
+        <div id="tab3">Értékelések</div>
+    </div>
+
+    <div id="content1" class="tab-content active">
+        <h2>Diákok Lista</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diák Név</th>
+                        <th>Osztály</th>
+                        <th>Jegy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Szabó Péter</td>
+                        <td>10.A</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>Kovács Anna</td>
+                        <td>10.B</td>
+                        <td>4</td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="content2" class="tab-content">
+        <h2>Órarend</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nap</th>
+                        <th>Óra</th>
+                        <th>Tantárgy</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hétfő</td>
+                        <td>1</td>
+                        <td>Matematika</td>
+                    </tr>
+                    <tr>
+                        <td>Kedd</td>
+                        <td>2</td>
+                        <td>Biológia</td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div id="content3" class="tab-content">
+        <h2>Értékelések</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diák Név</th>
+                        <th>Tantárgy</th>
+                        <th>Értékelés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Szabó Péter</td>
+                        <td>Matematika</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>Kovács Anna</td>
+                        <td>Biológia</td>
+                        <td>5</td>
+                    </tr>
+                    <!-- More rows as needed -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for tab switching
+        const tabs = document.querySelectorAll('.tabs div');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove 'active' class from all tabs and tab contents
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(tc => tc.classList.remove('active'));
+
+                // Add 'active' class to clicked tab and corresponding tab content
+                tab.classList.add('active');
+                document.getElementById('content' + tab.id.replace('tab', '')).classList.add('active');
+            });
+        });
+    </script>
+
 </body>
 </html>
